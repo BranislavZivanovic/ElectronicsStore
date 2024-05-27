@@ -1,0 +1,232 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> signInManager;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - InternetProdavnica</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/InternetProdavnica.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/Background.css"/>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-custom border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            PCbeograd
+                            <div class="wrapperIndex">
+                                <h2><i class="bi bi-controller"></i></h2>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house pocetnaIkonice" style="font-size: 1.7rem;"></i> Početna</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="AllProducts"><i class="bi bi-pci-card pocetnaIkonice" style="font-size: 1.7rem;"></i> Proizvodi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Cart" asp-action="AllProductsInCart"><i class="bi bi-cart3 pocetnaIkonice" style="font-size: 1.7rem;"></i> Korpa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="PcBuilder"><i class="bi bi-tools pocetnaIkonice" style="font-size: 1.7rem;"></i> PC Builder</a>
+                        </li>
+                        @if(signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Administration" asp-action="AdminPanel"><i class="bi bi-magic pocetnaIkonice" style="font-size: 1.7rem;"></i> Admin panel</a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="navbar-nav ml-auto" style="position:relative; width:auto;">
+                                <form asp-controller="Product" asp-action="AllProducts">
+                                    <span class = "btn-group">
+                                        <input class="form-control" type="text" name="SearchText" placeholder="Pretrazite proizvode..." />
+                                        <input class="siteButtonStyleSearch" style="margin-left:10px; margin-right:20px;" type="submit" value="Pretraži"/>
+                                    </span>
+                                </form>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        @if(signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <form class="float-right" method="post" asp-action="Logout" asp-controller="Account">
+                                    <button type="submit" class="nav-link btn btn-link py-0 text-light">
+                                        Izlogujte se @User.Identity.Name
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Register" style="font-size: 1rem;">Registracija</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login" style="font-size: 1rem;">Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted" style="margin-top:50px;">
+      <!-- Section: Social media -->
+      <section
+        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block pratiteNasIkonice">
+          <span>Pratite nas: </span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+          <a href="#" class="me-4 text-reset">
+            <i class="bi bi-facebook pratiteNasIkonice"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="bi bi-twitter pratiteNasIkonice"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="bi bi-google pratiteNasIkonice"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="bi bi-instagram pratiteNasIkonice"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="bi bi-linkedin pratiteNasIkonice"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="bi bi-github pratiteNasIkonice"></i>
+          </a>
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+      <section>
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold mb-4 textFooter">
+                <i class="bi bi-pc-display-horizontal"></i> PC Prodavnica Beograd
+              </h6>
+              <p>
+                Jedna jedina PC prodavnica sa PC builder-om u Beogradu! Najpovoljnije cene u celom regionu!
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4 textFooter">
+                INFO, REZERVACIJE, PRODAJA
+              </h6>
+              <p>
+                <a href="#!" class="text-reset"> <i class="bi bi-clock"></i> <br /> radnim danima 8-21h,
+                    subotom 9-21h,
+                    nedeljom 9-21h
+                </a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset"><i class="bi bi-telephone"></i> <br /> 0700 120 340 <br />
+                    011 10 20 340 <br />
+                </a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">
+                    <i class="bi bi-envelope-heart"></i> pcprodavnicabeograd@gmail.com
+                </a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4 textFooter">
+                Korisni linkovi
+              </h6>
+              <p>
+                <a asp-action="AllProducts" asp-controller="Product" class="text-reset">Svi proizvodi</a>
+              </p>
+              <p>
+                <a asp-action="AddComplaint" asp-controller="Complaint" class="text-reset">Reklamacije</a>
+              </p>
+              <p>
+                <a asp-action="PcBuilder" asp-controller="Product" class="text-reset">PC Builder</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4 textFooter">
+                Kontakt info
+              </h6>
+              <p><i class="bi bi-house"></i> Beograd, Zeleni venac, Srbija</p>
+              <p>
+                <i class="bi bi-envelope-heart"></i>
+                pcprodavnicabeograd@gmail.com
+              </p>
+              <p><i class="bi bi-telephone"></i> 0700 120 340</p>
+              <p><i class="bi bi-telephone"></i> 011 10 20 340</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      @*rgba(0, 0, 0, 0.05) <- BEFORE*@
+      <div class="text-center p-4" style="background-color: rgba(0, 247, 0, 1); color:black;">
+        © 2022 Copyright:
+        <a class="text-reset fw-bold" href="#">PC Prodavnica BEOGRAD</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

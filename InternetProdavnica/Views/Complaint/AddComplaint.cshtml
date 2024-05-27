@@ -1,0 +1,40 @@
+﻿@model InternetProdavnica.Models.Reklamacija
+
+@{
+    ViewData["Title"] = "AddComplaint";
+}
+
+<h1 class="d-flex justify-content-center">Reklamacija</h1>
+
+@if(@TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["AlertMessage"]
+        </div>
+    }
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="AddComplaint">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                Broj racuna
+                <input type="text" name="RacunID" />
+            </div>
+            <div class="form-group">
+                Opis reklamacije
+                @*<input style="height:150px;" asp-for="OpisReklamacije" class="form-control" />*@
+                <textarea class="complaintTextArea" rows="15" asp-for="OpisReklamacije"></textarea>
+                <span asp-validation-for="OpisReklamacije" class="text-danger"></span><br />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Posalji reklamaciju" class="siteButtonStyle" style="margin-left:30%;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,474 @@
+/*TABELE*/
+table {
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+    box-shadow: 5px 10px 20px grey;
+    width: 100%;
+}
+
+th, td {
+    padding: 1em;
+    background: #f4f5f7;
+    border-bottom: 1px solid black;
+}
+
+.css-mine {
+    margin-top: 2em;
+    clear: both;
+}
+/*/TABELE*/
+
+/* Kartice za prikaz proizvoda */
+.centerImageInCard{
+    position:relative;
+    /*margin-left:10%;*/
+    /*margin-top:5%;*/
+    transition:0.4s;
+    border-radius:7px;
+    filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.1));
+}
+
+.hoverEffect {
+    transition: 0.4s;
+    margin-bottom: 20px;
+}
+
+.hoverEffect:hover{
+    transform: scale(1.05);
+}
+
+.hoverEffect:hover .centerImageInCard{
+    transform: scale(1.05);
+}
+
+/*Stilizacija linkova*/
+.mojLink {
+    color: black;
+}
+
+.mojLink:link {
+    text-decoration: none;
+}
+
+.mojLink:hover {
+    color: #00f700;
+}
+/*Stilizacija linkova*/
+
+/*Stilizacija pocetne strane*/
+.pocetnaStranaTabele {
+    border: 2px solid #00f700;
+    box-shadow: 5px 10px 20px grey;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: x-large;
+    margin-bottom: 20px;
+    width: 500px;
+    height: auto;
+    -webkit-transition: 0.5s;
+}
+
+.pocetnaStranaTabele:hover {
+    width: 550px !important;
+    margin-left: 52px;
+    transition: 0.5s;
+    box-shadow: 5px 10px 20px #00f700;
+}
+/*Stilizacija pocetne strane*/
+
+.pocetnaIkonice{
+    transition:0.4s;
+}
+
+.pocetnaIkonice:hover{
+    color: #00f700;
+}
+
+.tabeleAplikacije {
+    border: 2px solid black;
+    box-shadow: 5px 10px 20px grey;
+}
+
+.pocetnaSlika {
+    position: relative;
+    filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.6));
+    top:-5vh;
+    transition: 0.4s;
+    animation: Slide_Up 1.4s ease;
+}
+
+.pocetnaSlika:hover{
+    filter: drop-shadow(10px 10px 10px rgba(0,247,0,0.6));
+    transform:scale(1.03);
+}
+
+.pocetnaText {
+    position: relative;
+    margin-bottom: 5%;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 5px 10px 20px grey;
+    height: 500px;
+    animation: Slide_Up 1.4s ease;
+    z-index:4;
+}
+
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.wrapper h2{
+    margin: 0;
+    line-height: 1;
+    font-size: 4em;
+    color:transparent;
+    text-transform:uppercase;
+    background-image: linear-gradient(to left, #2ecc71, #3498db, #9b59db, #9b59b6, #f39c12);
+    -webkit-background-clip: text;
+    animation:animateText 5s linear infinite;
+    -webkit-background-size: 500%;
+    background-size: 500%;
+    text-align:center;
+}
+
+@keyframes animateText{
+    0%{
+        background-position: 0 100%;
+    }
+    50% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+.razorProductText {
+    /*transition: 0.4s;
+    animation-name: Glow;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;*/
+
+    color:transparent;
+    background-image: linear-gradient(to left, #2ecc71, #3498db, #9b59db, #9b59b6, #f39c12);
+    -webkit-background-clip: content-box;
+    /*color: #00F700;*/
+}
+.razorProductText:hover {
+    transform:scale(1.1);
+}
+
+.threeCardsHomePosition {
+    position: relative;
+    animation: Slide_Up 1.7s ease;
+}
+
+.izdvajamoIzPonude {
+    position: relative;
+    margin-bottom: 5%;
+    font-weight: bold;
+    animation: Slide_Up 1.7s ease;
+}
+
+.borderShadowHome {
+    box-shadow: 5px 10px 20px grey;
+    border-radius:15px;
+    padding:40px;
+}
+
+.dugmeZaRazerPocetna {
+    position: relative;
+    border: 0px solid;
+    margin-left: 20vh;
+    margin-top: 20%;
+    color: white;
+    background: black;
+    border-radius: 15px;
+    width: 20%;
+    height: 50px;
+    transition: 0.7s;
+}
+.dugmeZaRazerPocetna:hover{
+    transform:scale(1.04);
+    background:#00F700;
+}
+
+.cardHome{
+    transition:0.4s;
+}
+.cardHome:hover{
+    /*transform: scale(1.05);
+    filter: drop-shadow(10px 10px 10px rgba(0,247,0,0.6));*/
+    margin-top:-0.5px;
+}
+
+.productDetailsImage{
+    border:1px solid black;
+    border-radius:15px;
+    transition:0.4s;
+    width:350px;
+    height:350px;
+}
+.productDetailsImage:hover {
+    transform: scale(1.01);
+}
+
+.productDetailsInfo{
+    position:relative;
+    width:600px;
+    left:35%;
+    top:45%;
+    font-size:large;
+}
+
+.productDetailsSpecification {
+    position: relative;
+    font-size: large;
+    top: -20vh;
+}
+
+.backgroundRainbow{
+    position:relative;
+    background: conic-gradient(
+        #fd004c,
+        #fe9000,
+        #fff020,
+        #3edf4b,
+        #3363ff,
+        #b102b7,
+        #fd004c
+    );
+    padding:5px;
+    border-radius:5px;
+}
+
+.pcBuilderSlika {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    transition: 0.4s;
+    border-radius: 15px;
+    z-index: 1;
+    animation: Slide_Up 1.7s ease;
+}
+
+.pcBuilderSlika:hover{
+    filter: drop-shadow(10px 10px 10px rgba(0,247,0,0.6));
+    transform: scale(1.05);
+}
+
+.backgroundRainbowPCbuilder {
+    position: relative;
+    background: conic-gradient( #fd004c, #fe9000, #fff020, #3edf4b, #3363ff, #b102b7, #fd004c );
+    border-radius: 15px;
+    height: 410px;
+    width: 420px;
+    margin-top: -400px;
+    animation: Slide_Up 1.7s ease;
+}
+
+/*PCBUILDER*/
+.leftPortionPCBuilder {
+    position: relative;
+    background: #f4f5f7;
+    overflow: hidden;
+    margin-top: 7%;
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 20px;
+    box-shadow: 5px 10px 20px grey;
+    margin-bottom:30px;
+}
+
+.processorPCBuilder {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+/*/PCBUILDER*/
+
+/*NARUDZBENICA*/
+.orderButton {
+    position: relative;
+    border: 0px solid;
+    color: white;
+    background: black;
+    margin-top:10px;
+    margin-left:30%;
+    border-radius: 15px;
+    width: 40%;
+    height: 35px;
+    transition: 0.7s;
+}
+
+.orderButton:hover {
+    transform: scale(1.04);
+    background: #00F700;
+}
+/*/NARUDZBENICE*/
+
+/*DUGMICI SAJT*/
+/*normal*/
+.siteButtonStyle {
+    position: relative;
+    border: 0px solid;
+    color: white;
+    background: black;
+    border-radius: 15px;
+    padding-left:15px;
+    padding-right:15px;
+    height: 35px;
+    transition: 0.7s;
+}
+
+.siteButtonStyle:hover {
+    transform: scale(1.04);
+    background: #00F700;
+}
+/*/normal*/
+
+/*delete*/
+.siteButtonStyleDelete {
+    position: relative;
+    border: 0px solid;
+    color: white;
+    background: black;
+    border-radius: 15px;
+    padding-left:15px;
+    padding-right:15px;
+    height: 35px;
+    transition: 0.7s;
+}
+
+.siteButtonStyleDelete:hover {
+    transform: scale(1.04);
+    background: #fa232c;
+}
+/*delete*/
+
+/*search*/
+.siteButtonStyleSearch {
+    position: relative;
+    border: 0px solid;
+    color: black;
+    margin-top:2px;
+    background: white;
+    border-radius: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 35px;
+    transition: 0.7s;
+}
+
+.siteButtonStyleSearch:hover {
+    transform: scale(1.04);
+    background: #00F700;
+}
+/*search*/
+/*/DUGMICI SAJT*/
+
+/*REGISTER STRANICA*/
+.registerForma {
+    position: relative;
+    box-shadow: 5px 10px 20px grey;
+    width: 50%;
+    margin-left:25%;
+    margin-top:10%;
+    margin-bottom:10%;
+    transition:0.4s;
+}
+.registerForma:hover{
+    transform:scale(1.05);
+}
+.inputRegister{
+    width:100%;
+    height:40px;
+    transition: 0.4s;
+    border:1px solid gray;
+    border-radius:7px;
+}
+.inputRegister:hover{
+    transform:scale(1.05);
+}
+/*/REGISTER STRANICA*/
+
+/*COMPLAINT STRANICA*/
+.complaintTextArea{
+    margin-top:10px;
+    width:80%;
+}
+/*/COMPLAINT STRANICA*/
+@keyframes spin {
+    100%{
+        transform: rotate(-360deg);
+    }
+}
+
+/*FOOTER*/
+.textFooter {
+    color: #00F700;
+    transition:0.4s;
+}
+
+.textFooter:hover{
+    transform:scale(1.05);
+}
+
+.pratiteNasIkonice{
+    color:black;
+    transition: 0.4s;
+}
+
+.pratiteNasIkonice:hover{
+    transform:scale(1.05);
+    color:#00F700;
+}
+/*/FOOTER*/
+
+@keyframes Glow {
+    from {
+        text-shadow: 0 0 20px rgba(0, 247, 0, 1);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(0, 247, 0, 0.5), 
+                     1px 0 20px rgba(0, 247, 0, 0.5), 
+                     0 1px 20px rgba(0, 247, 0, 0.5), 
+                     1px 1px 20px rgba(0, 247, 0, 0.5);
+    }
+}
+@keyframes Slide_Up {
+    0%{
+        transform:translateY(250px);
+    }
+    100%{
+        transform:translateY(0);
+    }
+}
+
+@media only screen and (max-width: 680px) {
+    .pocetnaSlika {
+        position: relative;
+        bottom: 10%;
+        width: 40%;
+        left: 40%;
+    }
+
+    .threeCardsHomePosition
+    {
+        position:relative;
+        top:15vh;
+    }
+
+    .izdvajamoIzPonude {
+        position: relative;
+        bottom: -10vh;
+    }
+}

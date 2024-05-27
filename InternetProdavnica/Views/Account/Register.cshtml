@@ -1,0 +1,45 @@
+﻿@model InternetProdavnica.ViewModels.RegisterViewModel
+
+<div class="card registerForma">
+    <form asp-action="Register">
+        <div class="card-header">
+            <h2 class="d-flex justify-content-center">Registracija</h2>
+        </div>
+        <div class="card-body" style="padding:40px;">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <i class="bi bi-envelope d-flex justify-content-center" style="font-size:2.5em;"></i> 
+                <input class="inputRegister" asp-for="Email" class="form-control" placeholder="Unesite vas email"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="bi bi-braces-asterisk d-flex justify-content-center" style="font-size:2.5em; margin-top:10px;"></i> 
+                <input class="inputRegister" asp-for="Password" class="form-control" placeholder="Unesite sifru"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="bi bi-check-circle d-flex justify-content-center" style="font-size:2.5em; margin-top:10px; margin-bottom:1%;"></i> 
+                <input class="inputRegister" asp-for="ConfirmPassword" class="form-control" placeholder="Potvrdite sifru"/>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="bi bi-building d-flex justify-content-center" style="font-size:2.5em; margin-top:10px; margin-bottom:10px;"></i> 
+                @*<input class="inputRegister" style="margin-bottom:5%;" asp-for="City" class="form-control" placeholder="Izaberite Vas grad"/>*@
+                <select class="inputRegister" asp-for="City" style="margin-bottom:5%;">
+                    <option value="Beograd">Beograd</option>
+                    <option value="Novi Sad">Novi Sad</option>
+                    <option value="Nis">Nis</option>
+                    <option value="Zrenjanin">Zrenjanin</option>
+                    <option value="Zajecar">Zajecar</option>
+                    <option value="Kragujevac">Kragujevac</option>
+                </select>
+            </div>
+            <div class="form-group d-flex justify-content-center">
+                <input type="submit" value="Kreiraj nalog" class="siteButtonStyle" />
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

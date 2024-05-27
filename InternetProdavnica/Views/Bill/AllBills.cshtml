@@ -1,0 +1,64 @@
+﻿@model IEnumerable<InternetProdavnica.Models.Racun>
+
+@{
+    ViewData["Title"] = "AllBills";
+}
+
+<h1 class="d-flex justify-content-center">Svi izdati racuni</h1>
+
+<table class="data">
+    <thead>
+        <tr style="border-bottom:1px solid black;">
+            <th>
+                Izdato licu
+            </th>
+            <th>
+                Kontakt telefon
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UkupnaVrednostRacuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumRacuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Izdat)
+            </th>
+            <th>
+                Narudzbenica
+            </th>
+            <th>
+                Stavke racuna
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr style="border-bottom:1px solid black;">
+            <td>
+                @Html.DisplayFor(modelItem => item.NarudzbenicaIdfkNavigation.ImeIprezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NarudzbenicaIdfkNavigation.Telefon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UkupnaVrednostRacuna) RSD
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumRacuna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Izdat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NarudzbenicaIdfkNavigation.NarudzbenicaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StavkeRacuna)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

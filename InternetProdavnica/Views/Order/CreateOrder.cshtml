@@ -1,0 +1,84 @@
+﻿@model InternetProdavnica.Models.Narudzbenica
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> signInManager;
+
+@{
+    ViewData["Title"] = "CreateOrder";
+}
+
+<h1 class="d-flex justify-content-center">Unesite potrebne informacije za isporuku</h1>
+
+@if(@TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["AlertMessage"]
+    </div>
+}
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="CreateOrder">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Datum" class="form-control" />
+                <span asp-validation-for="Datum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Administrator" class="form-control" />
+                <span asp-validation-for="Administrator" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Korisnik" class="form-control" />
+            </div>
+            @if(signInManager.IsSignedIn(User))
+            {
+                
+            }
+            else
+            {
+                <div class="form-group">
+                    E-mail
+                    <input type="text" name="email" class="form-control" required/>
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                Ime i prezime
+                <input type="text" name="imeIPrezime" class="form-control" required/>
+                <span asp-validation-for="ImeIprezime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Adresa za isporuku
+                <input type="text" name="adresaIsporuke" class="form-control" required/>
+                <span asp-validation-for="AdresaIsporuke" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grad" class="control-label"></label>
+                <input type="text" name="grad" class="form-control" required/>
+                <span asp-validation-for="Grad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Postanski broj
+                <input type="text" name="postanskiBroj" class="form-control" required/>
+                <span asp-validation-for="PostanskiBroj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Drzava" class="control-label"></label>
+                <input type="text" name="drzava" class="form-control" required/>
+                <span asp-validation-for="Drzava" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefon" class="control-label"></label>
+                <input type="text" name="telefon" class="form-control" required/>
+                <span asp-validation-for="Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="orderButton">Naruci!</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

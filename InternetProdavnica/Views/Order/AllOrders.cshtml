@@ -1,0 +1,118 @@
+﻿@model IEnumerable<InternetProdavnica.Models.Narudzbenica>
+
+@{
+    ViewData["Title"] = "AllOrders";
+}
+
+<h1 class="d-flex justify-content-center" style="margin-bottom:5%;">Sve narudzbenice</h1>
+
+@if(@TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["AlertMessage"]
+        </div>
+    }
+
+<div class="d-flex justify-content-center">
+    <table class="data">
+    <thead>
+        <tr style="border-bottom:1px solid black;">
+            <th>
+                @Html.DisplayNameFor(model => model.Datum)
+            </th>
+            <th>
+                Ukupno
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odobrena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Administrator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Korisnik)
+            </th>
+            <th>
+                Ime i prezime
+            </th>
+            <th>
+                Adresa isporuke
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grad)
+            </th>
+            <th>
+                Postanski broj
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Drzava)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefon)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr style="border-bottom:1px solid black;">
+            <td>
+                @Html.DisplayFor(modelItem => item.Datum)
+            </td>
+            <td>
+                <b>@Html.DisplayFor(modelItem => item.UkupnaVrednost) dinara</b> 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Odobrena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Administrator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Korisnik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImeIprezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdresaIsporuke)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostanskiBroj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Drzava)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </td>
+            <td>
+                <form>
+                    <input type="submit" value="Detalji" asp-action="AllOrderItems" asp-route-id="@item.NarudzbenicaId" class="siteButtonStyle" style="margin-bottom:10px">
+                </form>
+                @if(item.Odobrena == false)
+                {
+                    <form>
+                        <input type="submit" value="Odobri" asp-controller="Order" asp-action="ApproveOrder" asp-route-id="@item.NarudzbenicaId" class="siteButtonStyle">
+                    </form>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+
+
+@section Scripts{ 
+    <script type="text/javascript">
+        window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+        }, 1000);
+    </script>
+}

@@ -1,0 +1,152 @@
+﻿@model IEnumerable<InternetProdavnica.Models.Proizvod>
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> signInManager;
+
+<div class="modal fade" id="MyPopUp" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content"> <!-- Dodati inline 'style="height:1250px;"' za kontrolu velicine -->
+            <div class="modal-body modalSize">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="boxifyCategoryProducts">
+    <div class="row">
+        <div class="col">
+            <form>
+                <button class="siteButtonProductCategory" type="submit" asp-route-id="9" asp-action="DisplayByCategory"><i class="bi bi-pc" style="font-size:1.7em;"></i> PC konfiguracije</button>
+            </form>
+        </div>
+        <div class="col">
+            <form>
+                <button class="siteButtonProductCategory" type="submit" asp-route-id="10" asp-action="DisplayByCategory"><i class="bi bi-laptop" style="font-size:1.7em;"></i> Laptopovi</button>
+            </form>
+        </div>
+        <div class="col">
+            <form>
+                <button class="siteButtonProductCategory" type="submit" asp-route-id="1" asp-action="DisplayByCategory"><i class="bi bi-cpu" style="font-size:1.7em;"></i> Procesori</button>
+            </form>
+        </div>
+        <div class="col">
+            <form>
+                <button class="siteButtonProductCategory" type="submit" asp-route-id="2" asp-action="DisplayByCategory"><i class="bi bi-motherboard" style="font-size:1.7em;"></i> Maticne ploce</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="w-100"></div>
+
+    <div class="row">
+        <div class="col">
+            <form>
+                <button class="siteButtonProductCategory" type="submit" asp-route-id="3" asp-action="DisplayByCategory"><i class="bi bi-gpu-card" style="font-size:1.7em;"></i> Graficke kartice</button>
+            </form>
+        </div>
+        <div class="col">
+            <form>
+                <button class="siteButtonProductCategory" type="submit" asp-route-id="4" asp-action="DisplayByCategory"><i class="bi bi-memory" style="font-size:1.7em;"></i> RAM memorije</button>
+            </form>
+        </div>
+        <div class="col">
+            <form>
+                <button class="siteButtonProductCategory" type="submit" asp-route-id="5" asp-action="DisplayByCategory"><i class="bi bi-hdd" style="font-size:1.7em;"></i> HDD i SSD</button>
+            </form>
+        </div>
+        <div class="col">
+            <form>
+                <button class="siteButtonProductCategory" type="submit" asp-route-id="8" asp-action="DisplayByCategory"><i class="bi bi-plug" style="font-size:1.7em;"></i> Kucista i napajanja</button>
+            </form>
+         </div>
+    </div>
+</div>
+
+@if(@TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["AlertMessage"]
+    </div>
+}
+
+@if(ViewBag.allProducts > 0)
+{
+    <div class="container">
+    <vc:search-bar search-pager="@ViewBag.SearchPager">
+    </vc:search-bar>
+
+    <div class="row">
+        @foreach(var item in Model)
+        {
+            @if(item.Aktivan == true && item.IsDeleted == false)
+            {
+                    <div class="col-12 col-md-6 col-lg-3 hoverEffect">
+                        <div class="card">
+                            <img class="card-img-top centerImageInCard" src="@item.Slika"/>
+                                <div class="card-body">
+                                    <h4 class="d-flex justify-content-center card-title">@Html.DisplayFor(modelItem => item.NazivProizvoda)</h4>
+                                    <p class="card-text">@Html.DisplayFor(modelItem => item.Opis)</p>
+                                    <p class="card-text">Cena proizvoda: <b>@Html.DisplayFor(modelItem => item.JedinicnaCena)</b> RSD</p>
+                                    <p class="card-text">SKU: @Html.DisplayFor(modelItem => item.ProizvodId)</p>
+                                    <form>
+                                        <input style="margin-bottom:5px; width:100%;" type="button" onclick="DetailsPage('@Url.Action("ProductDetails", "Product")', @item.ProizvodId)" value="Detaljnije" class="siteButtonStyle">
+                                    </form>
+                                    <form>
+                                        <input style="margin-bottom:5px; width:100%;" type="submit" asp-action="AddToCart" asp-route-id="@item.ProizvodId" value="Dodaj u korpu" class="siteButtonStyle">
+                                    </form>
+                                    @if(signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+                                    {
+                                        <form>
+                                            <input style="margin-bottom:5px; width:100%;" type="submit" asp-action="DeleteProduct" asp-route-id="@item.ProizvodId" value="Obriši" class="siteButtonStyleDelete">
+                                        </form>
+                                    }
+                                    
+                                </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}
+else
+{
+    <h1 class="d-flex justify-content-center" style="margin-top:20%;">Nije pronađen ni jedan rezultat</h1>
+    <h1 class="d-flex justify-content-center"><i class="bi bi-emoji-frown pocetnaIkonice" style="font-size: 5rem;"></i></h1>
+}
+
+@section Scripts{ 
+    <script type="text/javascript">
+        function DetailsPage(url, idType)
+        {
+            $.ajax({
+            type: "GET",
+            url: url,
+            data: {id: idType},
+            success: function (res) {
+                $('#MyPopUp .modal-body').html(res)
+                $('#MyPopUp').modal('show');
+            }
+        });
+        }
+
+        function ClickDelete(url, idType)
+        {
+            $.ajax({
+            type: "GET",
+            url: url,
+            data: {id: idType},
+            success: function (res) {
+                $('#MyPopUp .modal-body').html(res)
+                $('#MyPopUp').modal('show');
+            }
+        });
+        }
+
+        window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+        }, 1000);
+    </script>
+}

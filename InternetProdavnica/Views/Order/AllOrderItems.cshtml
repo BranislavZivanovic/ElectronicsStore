@@ -1,0 +1,45 @@
+﻿@model IEnumerable<InternetProdavnica.Models.StavkaNarudzbenice>
+
+@{
+    ViewData["Title"] = "AllOrderItems";
+}
+
+<h1 class="d-flex justify-content-center" style="margin-bottom:5%;">Narudzbenica ID: @ViewBag.orderID</h1>
+
+<table class="table tabeleAplikacije">
+    <thead style="background:#3c9fe8; color:white;">
+        <tr>
+            <th>
+                Ukupna vrednost
+            </th>
+            <th>
+                Naziv proizvoda
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kolicina)
+            </th>
+            <th>
+                ID narudzbenice
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UkupnaVrednostStavke) dinara
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazivProizvoda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kolicina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NarudzbenicaIdfkNavigation.NarudzbenicaId)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

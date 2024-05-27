@@ -1,0 +1,58 @@
+﻿@model IEnumerable<InternetProdavnica.Models.Narudzbenica>
+
+@{
+    ViewData["Title"] = "ApprovedOrders";
+}
+
+<h1 class="d-flex justify-content-center" style="margin-bottom:5%;">Odobrene narudzbenice</h1>
+
+<table class="data">
+    <thead>
+        <tr >
+            <th>
+                @Html.DisplayNameFor(model => model.Datum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UkupnaVrednost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odobrena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Administrator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Korisnik)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.KorpaIdfkNavigation)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr style="border-bottom:1px solid black;">
+            <td>
+                @Html.DisplayFor(modelItem => item.Datum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UkupnaVrednost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Odobrena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Administrator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Korisnik)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.KorpaIdfkNavigation.KorpaId)
+            </td>*@
+            <td></td>
+        </tr>
+}
+    </tbody>
+</table>

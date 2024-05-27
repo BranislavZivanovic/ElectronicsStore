@@ -1,0 +1,58 @@
+﻿@model InternetProdavnica.Models.Proizvod
+
+@{
+    ViewData["Title"] = "DeleteProduct";
+    Layout = null;
+}
+
+<h1>Brisanje proizvoda</h1>
+
+<h3>Da li ste sigurni da zelite da obrisete proizvod?</h3>
+<div>
+    <h4>Informacije o proizvodu</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NazivProizvoda)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NazivProizvoda)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.JedinicnaCena)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.JedinicnaCena)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Aktivan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Aktivan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Slika)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Slika)
+        </dd>
+        <dt class = "col-sm-2">
+            Podkategorija:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PodkategorijaIdfkNavigation.NazivPodkategorije)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteProduct">
+        <input type="hidden" asp-for="ProizvodId" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

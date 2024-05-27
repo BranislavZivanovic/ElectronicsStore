@@ -1,0 +1,44 @@
+﻿@model InternetProdavnica.Models.Proizvod
+
+@{
+    ViewData["Title"] = "ProductDetails";
+    Layout = null;
+}
+
+<h1 class="d-flex justify-content-center" style="margin-bottom:60px; margin-top:30px;">Detalji @Html.DisplayFor(model => model.NazivProizvoda) proizvoda</h1>
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+          <img src="@Html.DisplayFor(model => model.Slika)" alt="proizvod" class="productDetailsImage"/>
+      </div>
+      <div class="col">
+          <b>Naziv proizvoda:</b>
+        @Html.DisplayFor(model => model.NazivProizvoda) <br />
+        <b>Opis:</b>
+        @Html.DisplayFor(model => model.Opis) <br />
+        <b>Cena:</b>
+        @Html.DisplayFor(model => model.JedinicnaCena) <br />
+        <b>Kategorija proizvoda:</b>
+        @Html.DisplayFor(model => model.PodkategorijaIdfkNavigation.NazivPodkategorije) <br />
+        <b>SKU:</b>
+        @Html.DisplayFor(model => model.ProizvodId) <br /> <br />
+        <a asp-action="AddToCart" asp-route-id="@Model.ProizvodId" class="buttonsSite">Dodaj u korpu</a>
+      </div>
+    </div>
+    <div class="row">
+  <div class="col-sm-8">
+      <b>Specifikacija proizvoda:</b> <br />
+        @Html.DisplayFor(model => model.Konfiguracija) <br />
+  </div>
+</div>
+    
+    
+    <div class="productDetailsInfo">
+        
+    </div>
+
+    <div class="productDetailsSpecification">
+        
+    </div>
+</div>

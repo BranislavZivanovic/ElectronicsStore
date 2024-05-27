@@ -1,0 +1,71 @@
+﻿@model InternetProdavnica.Models.Proizvod
+
+@{
+    ViewData["Title"] = "AddProduct";
+}
+
+<h1>Dodaj proizvod</h1>
+
+@if(TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["AlertMessage"]
+        </div>
+    }
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddProduct" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Podkategorija</label>
+                <select asp-for="PodkategorijaIdfk" class ="form-control" asp-items="ViewBag.podcategory"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Naziv</label>
+                <input asp-for="NazivProizvoda" class="form-control" />
+                <span asp-validation-for="NazivProizvoda" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Opis</label>
+                <input asp-for="Opis" class="form-control" />
+                <span asp-validation-for="Opis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Konfiguracija</label><br />
+                <textarea asp-for="Konfiguracija"></textarea>
+                <span asp-validation-for="Konfiguracija" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Jedinicna cena</label>
+                <input asp-for="JedinicnaCena" class="form-control" />
+                <span asp-validation-for="JedinicnaCena" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Aktivan" /> @Html.DisplayNameFor(model => model.Aktivan)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label">Slika</label>
+                <div class="custom-file">
+                    <input asp-for="ImageFile" class="custom-file-input" id="customFile" />
+                    <label class="custom-file-label" for="customFile">Izaberite sliku</label>
+                </div>
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <input type="submit" value="Dodaj proizvod" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

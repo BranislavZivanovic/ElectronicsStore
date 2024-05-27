@@ -1,0 +1,92 @@
+﻿@model InternetProdavnica.Models.Proizvod
+@{
+}
+
+@if(@TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["AlertMessage"]
+        </div>
+    }
+
+<div class="container">
+    <h1 class="d-flex justify-content-center" style="margin-top:2%;margin-bottom:3%;">PC&nbsp;<i class="bi bi-tools pocetnaIkonice"></i>&nbsp;Builder</h1>
+    <div class="leftPortionPCBuilder" style="margin-top:-2%;">
+        <form asp-action="PcBuilder" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <p style="font-size:large; margin-left:2%;">Komponenta&nbsp; Izaberite proizvod</p>
+            </div>
+            <div class="processorPCBuilder">
+                <i class="bi bi-cpu pcBuilderIkonica"></i>
+                <p style="margin-left:57px;">CPU</p>
+                <div class="form-group">
+                    <select style="position:relative; width:50%; margin-left:15%; top:-75px; float:right; margin-right:20%;" name="procesorID" class ="form-control inputScale" asp-items="ViewBag.processor"></select>
+                </div>
+            </div>
+            <div class="processorPCBuilder">
+                <i class="bi bi-motherboard pcBuilderIkonica"></i>
+                <p style="margin-left:37px;">Maticna ploca</p>
+                <div class="form-group">
+                    <select style="position:relative; width:50%; margin-left:15%; top:-75px; float:right; margin-right:20%;" name="motherboardID" class ="form-control inputScale" asp-items="ViewBag.motherboard"></select>
+                </div>
+            </div>
+            <div class="processorPCBuilder">
+                <i class="bi bi-gpu-card pcBuilderIkonica"></i>
+                <p style="margin-left:57px;">GPU</p>
+                <div class="form-group">
+                    <select style="position:relative; width:50%; margin-left:15%; top:-75px; float:right; margin-right:20%;" name="graphicsID" class ="form-control inputScale" asp-items="ViewBag.graphics"></select>
+                </div>
+            </div>
+            <div class="processorPCBuilder">
+                <i class="bi bi-memory pcBuilderIkonica"></i>
+                <p style="margin-left:57px;">RAM</p>
+                <div class="form-group">
+                    <select style="position:relative; width:50%; margin-left:15%; top:-75px; float:right; margin-right:20%;" name="ramID" class ="form-control inputScale" asp-items="ViewBag.ram"></select>
+                </div>
+            </div>
+            <div class="processorPCBuilder">
+                <i class="bi bi-device-hdd pcBuilderIkonica"></i>
+                <p style="margin-left:57px;">HDD</p>
+                <div class="form-group">
+                    <select style="position:relative; width:50%; margin-left:15%; top:-75px; float:right; margin-right:20%;" name="hddID" class ="form-control inputScale" asp-items="ViewBag.hdd"></select>
+                </div>
+            </div>
+            <div class="processorPCBuilder">
+                <i class="bi bi-device-ssd pcBuilderIkonica"></i>
+                <p style="margin-left:57px;">SSD</p>
+                <div class="form-group">
+                    <select style="position:relative; width:50%; margin-left:15%; top:-75px; float:right; margin-right:20%;" name="ssdID" class ="form-control inputScale" asp-items="ViewBag.ssd"></select>
+                </div>
+            </div>
+            <div class="processorPCBuilder">
+                <i class="bi bi-plug pcBuilderIkonica"></i>
+                <p style="margin-left:37px;">Napajanje</p>
+                <div class="form-group">
+                    <select style="position:relative; width:50%; margin-left:15%; top:-75px; float:right; margin-right:20%;" name="psuID" class ="form-control inputScale" asp-items="ViewBag.psu"></select>
+                </div>
+            </div>
+            <div class="processorPCBuilder">
+                <i class="bi bi-pc pcBuilderIkonica"></i>
+                <p style="margin-left:37px;">Kuciste</p>
+                <div class="form-group">
+                    <select style="position:relative; width:50%; margin-left:15%; top:-75px; float:right; margin-right:20%;" name="caseID" class ="form-control inputScale" asp-items="ViewBag.PcCase"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                    <input style="margin-left:40%; margin-bottom:20px;" type="submit" value="Dodaj proizvode u korpu" class="siteButtonStyle" />
+                </div>
+        </form>
+    </div>           
+</div>
+
+<link href="~/css/PCBuilder.css" rel="stylesheet"/>
+@section Scripts{ 
+    <script type="text/javascript">
+         window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+        }, 4000);
+    </script>
+}

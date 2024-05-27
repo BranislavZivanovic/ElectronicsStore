@@ -1,0 +1,74 @@
+﻿@model IEnumerable<InternetProdavnica.Models.Reklamacija>
+
+@{
+    ViewData["Title"] = "AllComplaints";
+}
+
+<h1>Reklamacije</h1>
+
+<table class="data">
+    <thead style="border-bottom:1px solid black;">
+        <tr>
+            <th>
+                Opis reklamacije
+            </th>
+            <th>
+                ID racuna
+            </th>
+            <th>
+                Ime lica koje je podnelo reklamaciju
+            </th>
+            <th>
+                Kontakt telefon lica koje je podnelo reklamaciju
+            </th>
+            <th>
+                E-mail lica koje je podnelo reklamaciju
+            </th>
+            <th>
+                Odobrena reklamacija
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr style="border-bottom:1px solid black;">
+            <td>
+                @Html.DisplayFor(modelItem => item.OpisReklamacije)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RacunIdfkNavigation.RacunId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RacunIdfkNavigation.NarudzbenicaIdfkNavigation.ImeIprezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RacunIdfkNavigation.NarudzbenicaIdfkNavigation.Telefon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RacunIdfkNavigation.NarudzbenicaIdfkNavigation.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Odobrena)
+            </td>
+            @if(item.Odobrena == true)
+            {
+                <td></td>
+            }
+            else
+            {
+                <td>
+                    <form>
+                        <input style="margin-bottom:5px;" type="submit" value="Odobri" asp-action="ApproveComplaint" asp-route-id="@item.ReklamacijaId" class="siteButtonStyle">
+                    </form>
+                    <form>
+                        <input style="margin-bottom:5px;" type="submit" value="Odbij" asp-action="DisapproveComplaint" asp-route-id="@item.ReklamacijaId" class="siteButtonStyle">
+                    </form>
+                </td>
+            }
+        </tr>
+}
+    </tbody>
+</table>

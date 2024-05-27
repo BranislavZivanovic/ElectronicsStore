@@ -1,0 +1,103 @@
+﻿@model IEnumerable<InternetProdavnica.Models.Korpa>
+
+@{
+    ViewData["Title"] = "AllProductsInCart";
+    double totalAmount = 0;
+}
+
+@if(@TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["AlertMessage"]
+        </div>
+    }
+
+@if(ViewBag.countCart > 0)
+{
+    <h1 class="d-flex justify-content-center pocetnaIkonice">Proizvodi u <i class="bi bi-cart4" style="font-size: 5rem;"></i></h1>
+
+    <table class="data">
+        <thead style="background:#00F700; color:white; border-bottom:1px solid black">
+            <tr>
+                <th class="text-dark">
+                    Slika proizvoda
+                </th>
+                <th class="text-dark">
+                    Proizvod
+                </th>
+                @*<th class="text-dark">
+                    @Html.DisplayNameFor(model => model.KorisnikId)
+                </th>*@
+                <th class="text-dark">
+                    Vrednost
+                </th>
+                <th class="text-dark">
+                    @Html.DisplayNameFor(model => model.Kolicina)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+        @if(item.Active == true)
+        {
+            totalAmount += item.UkupnaVrednost;
+            <tr style="border-bottom:1px solid black;">
+                <td>
+                    <img src="@(item.ProizvodIdfkNavigation.Slika)" alt="slika proizvoda" width="50px" height="50px">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProizvodIdfkNavigation.NazivProizvoda)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.KorisnikId)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.UkupnaVrednost) dinara
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kolicina)
+                </td>
+                <td>
+                    <form>
+                        <input style="margin-bottom:5px;" type="submit" value="Dodaj" asp-action="AddMore" asp-route-id="@item.KorpaId" class="siteButtonStyle">
+                    </form>
+                    @if(item.Kolicina > 1)
+                    {
+                        <form>
+                            <input style="margin-bottom:5px;" type="submit" value="Izbaci" asp-action="Subtract" asp-route-id="@item.KorpaId" class="siteButtonStyle">
+                        </form>
+                    }
+                    <form>
+                        <input type="submit" value="Ukloni" asp-action="DeleteCartProduct" asp-route-id="@item.KorpaId" class="siteButtonStyle">
+                    </form>
+                </td>
+            </tr>
+        }    
+    }
+        </tbody>
+    </table>
+
+    <h4 style="margin-top:20px;"><b>Ukupna vrednost za plaćanje: @totalAmount dinara</b></h4><br />
+
+    <form>
+        <input style="margin-bottom:10%;" type="submit" asp-controller="Order" value="Nastavi sa porucivanjem" asp-action="CreateOrder" class="siteButtonStyle">
+    </form>
+}
+else
+{
+    <div class="d-flex justify-content-center" style="margin-top:20%; margin-bottom:20%;">
+        <h1><i class="bi bi-cart4 pocetnaIkonice" style="font-size: 5rem;"></i></h1>
+        <h1>Vaša korpa je prazna :( ... <br>Dodajte neki proizvod :)</h1>
+    </div>
+}
+
+@section Scripts{ 
+    <script type="text/javascript">
+         window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+        }, 5000);
+    </script>
+}

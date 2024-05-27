@@ -1,0 +1,49 @@
+﻿@model IEnumerable<IdentityRole>
+
+@{
+    ViewBag.Title = "All Roles";
+}
+
+<h1>Sve role u sistemu</h1>
+
+@if(Model.Any())
+{
+    <a class="btn btn-primary mb-3" style="width:auto;" asp-action="CreateRole" asp-controller="Administration">
+        Dodaj novu rolu
+    </a>
+
+    foreach(var role in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                Role Id : @role.Id
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    @role.Name
+                </h5>
+            </div>
+            <div class="card-footer">
+                <a asp-action="EditRole" asp-controller="Administration" asp-route-id="@role.Id" class="btn btn-primary">Edituj</a>
+                @*<a href="#" class="btn btn-danger">Obrisi</a>*@
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            Ni jedna rola nije kreirana
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Iskoristi dugme ispod da napravis rolu
+            </h5>
+            <a class="btn btn-primary" style="width:auto;"
+               asp-controller="Administration" asp-action="CreateRole">
+                Napravi rolu
+            </a>
+        </div>
+    </div>
+}

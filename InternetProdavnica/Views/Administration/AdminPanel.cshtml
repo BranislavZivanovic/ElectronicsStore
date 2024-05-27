@@ -1,0 +1,100 @@
+﻿<div class="d-flex justify-content-center" style="margin-bottom:10%;">
+    <div class="container">
+        <h1 class="d-flex justify-content-center" style="margin-bottom:5%">Admin panel</h1>
+        <div class="row">
+          <div class="col-md-6">
+              <span>
+                  <a class="mojLink" href="@Url.Action("AllOrders","Order")">
+                      <span>
+                        <div class="col-md-12 pocetnaStranaTabele">
+                            <h1><i class="bi bi-truck d-flex justify-content-center"></i></h1><p class="d-flex justify-content-center">Sve narudzbenice:&nbsp;<b>@ViewBag.allOrders</b></p>
+                        </div>
+                      </span>
+                  </a>
+               </span>
+          </div>
+          <div class="col-md-6">
+              <span>
+                  <a class="mojLink" href="@Url.Action("OrdersOnWaitList","Order")">
+                      <span>
+                        <div class="col-md-12 pocetnaStranaTabele">
+                            <h1><i class="bi bi-truck-flatbed d-flex justify-content-center"></i></h1><p class="d-flex justify-content-center">Nepotvrdjene porudzbenice:&nbsp;<b>@ViewBag.allUnapprovedOrders</b></p>
+                        </div>
+                      </span>
+                  </a>
+               </span>
+          </div>
+
+          <!-- Force next columns to break to new line at md breakpoint and up -->
+          <div class="w-100 d-none d-md-block"></div>
+
+          <div class="col-md-6">
+              <span>
+                  <a class="mojLink" href="@Url.Action("ApprovedOrders","Order")">
+                      <span>
+                        <div class="col-md-12 pocetnaStranaTabele">
+                            <h1><i class="bi bi-bag-check d-flex justify-content-center"></i></h1><p class="d-flex justify-content-center">Potvrđene narudzbenice:&nbsp;<b>@ViewBag.allApprovedOrders</b></p>
+                        </div>
+                      </span>
+                  </a>
+               </span>
+          </div>
+
+          <div class="col-md-6">
+              <span>
+                  <a class="mojLink" href="@Url.Action("AddProduct","Product")">
+                      <span>
+                        <div class="col-md-12 pocetnaStranaTabele">
+                            <h1><i class="bi bi-box-seam d-flex justify-content-center"></i></h1><p class="d-flex justify-content-center">Proizvodi:&nbsp;<b>@ViewBag.allProducts</b></p>
+                        </div>
+                      </span>
+                  </a>
+               </span>
+          </div>
+          <div class="col-md-6">
+              <span>
+                  <a class="mojLink" href="@Url.Action("ListUsers","Administration")">
+                      <span>
+                        <div class="col-md-12 pocetnaStranaTabele">
+                            <h1><i class="bi bi-people d-flex justify-content-center"></i></h1><p class="d-flex justify-content-center">Registrovani korisnici:&nbsp;<b>@ViewBag.allRegisteredUsers</b></p>
+                        </div>
+                      </span>
+                  </a>
+               </span>
+          </div>
+          <div class="col-md-6">
+              <span>
+                  <a class="mojLink" href="@Url.Action("ListRoles","Administration")">
+                      <span>
+                        <div class="col-md-12 pocetnaStranaTabele">
+                            <h1><i class="bi bi-people d-flex justify-content-center"></i></h1><p class="d-flex justify-content-center">Role u sistemu:&nbsp;<b>@ViewBag.allRoles</b></p>
+                        </div>
+                      </span>
+                  </a>
+               </span>
+          </div>
+          <div class="col-md-6">
+              <span>
+                  <a class="mojLink" href="@Url.Action("AllBills","Bill")">
+                      <span>
+                        <div class="col-md-12 pocetnaStranaTabele">
+                            <h1><i class="bi bi-receipt d-flex justify-content-center"></i></h1><p class="d-flex justify-content-center">Svi izdati racuni:&nbsp;<b>@ViewBag.allBills</b></p>
+                        </div>
+                      </span>
+                  </a>
+               </span>
+          </div>
+          <div class="col-md-6">
+              <span>
+                  <a class="mojLink" href="@Url.Action("AllComplaints","Complaint")">
+                      <span>
+                        <div class="col-md-12 pocetnaStranaTabele">
+                            <h1><i class="bi bi-x-octagon d-flex justify-content-center"></i></h1><p class="d-flex justify-content-center">Trazene reklamacije:&nbsp;<b>@ViewBag.allBills</b></p>
+                        </div>
+                      </span>
+                  </a>
+               </span>
+          </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿body {
+    font-family: 'Poppins', sans-serif;
+    font-weight:300;
+    background: #f0f2f5;
+}
+
+.wrapperIndex {
+    position: absolute;
+    top: 50%;
+    left: 2.9%;
+    transform: translate(-50%, -50%);
+    margin-right: 50px;
+    width: 70px;
+}
+
+.wrapperIndex h2{
+    margin: 0;
+    line-height: 1;
+    font-size: 4em;
+    color:transparent;
+    text-transform:uppercase;
+    background-image: linear-gradient(to left, #2ecc71, #3498db, #9b59db, #9b59b6, #f39c12);
+    -webkit-background-clip: text;
+    animation:animateText 5s linear infinite;
+    -webkit-background-size: 500%;
+    background-size: 500%;
+    text-align:center;
+}
+
+/* NAVBAR BOJA*/
+.navbar-custom {
+    background-color: rgba(33,37,41,1);
+    height: 73.8px !important;
+    position: relative;
+    margin-top:3%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    border-radius: 15px;
+}
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: green;
+}
+/* /NAVBAR BOJA*/
